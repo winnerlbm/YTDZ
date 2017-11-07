@@ -35,8 +35,8 @@
 				bottom: 5px;
 				width: 100%;
 				position: absolute;
-				z-index: 1000;
 				pointer-events: none;
+				z-index: 1000;
 				padding-left: 5px;
 				padding-right: 5px;
 				text-align: center;
@@ -98,12 +98,39 @@
 					maxZoom: 16
 				});
 			};
-			mui.ready(initMap);
+
+			//初始化事件
+			var eventInit = function() {
+				var btn = document.getElementById("allBtn");
+				//监听点击事件
+				btn.addEventListener("tab", function() {
+					alert('hello world');
+				}, false);
+				//触发submit按钮的点击事件
+				//				mui.trigger(btn, 'tab');
+			};
+
+			//初始化应用
+			var initApp = function() {
+				this.initMap();
+				this.eventInit();
+			};
+			mui.ready(initApp);
+
+			// H5 plus事件处理
+			/*function plusReady() {
+				this.eventInit();
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}*/
 		</script>
 
 		<div id="ytmap" class="mui-content">
 			<div class="leaflet-map-control-container">
-				<button type="button" class="mui-btn mui-icon mui-icon-star mui-btn-primary mui-pull-left">全部</button>
+				<button id="allBtn" type="button" class="mui-btn mui-icon mui-icon-star mui-btn-primary mui-pull-left">全部</button>
 				<button type="button" class="mui-btn mui-btn-danger mui-pull-left">红色预警</button>
 				<button type="button" class="mui-btn mui-btn-warning0 mui-pull-left">橙色预警</button>
 				<button type="button" class="mui-btn mui-btn-warning1 mui-pull-left">橙色预警</button>
